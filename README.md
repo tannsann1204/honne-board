@@ -37,6 +37,26 @@ DB は `data/honne.db` に、投稿画像は `data/uploads/` に自動作成さ�
 - SEO: SSR、投稿ごとの meta、`sitemap.xml` / `robots.txt` 自動生成
 - 利用規約・プライバシーポリシー(AdSense 審査に必要な広告掲載の明記込み)
 
+## スマホで確認する
+
+### 方法A: 自分のPCで起動して同じWi-Fiから開く(最速)
+
+```bash
+npm run dev
+```
+
+起動ログに表示される `Network: http://192.168.x.x:3000` のURLを、同じWi-Fiにつないだスマホのブラウザで開くだけです。
+
+### 方法B: Render にデプロイ(どこからでも開ける恒久URL)
+
+リポジトリに `render.yaml` と `Dockerfile` を同梱しています。
+
+1. https://render.com にGitHubアカウントでサインアップ
+2. ダッシュボードで「New +」→「Blueprint」→ このリポジトリを選択
+3. 数分でビルドされ、`https://honne-board-xxxx.onrender.com` のURLが発行される
+
+無料プランの注意: 永続ディスクがないため、再デプロイや再起動で投稿データと画像は消えます(動作確認用途)。本運用は Starter プラン以上にして `render.yaml` 内の `disk` 設定を有効化してください。
+
 ## 広告(収益化)の設定
 
 AdSense 未設定の間は、広告枠の位置に点線のプレースホルダーが表示されます。承認後に環境変数を設定するだけで実広告に切り替わります。

@@ -1,0 +1,20 @@
+# Render (https://render.com) 用のデプロイ設定。
+# ダッシュボードで「New +」→「Blueprint」からこのリポジトリを選ぶだけでデプロイされます。
+#
+# 注意: 無料プランは永続ディスクが使えないため、再デプロイ・再起動で
+# 投稿データ(SQLite)とアップロード画像が消えます。動作確認用途向け。
+# 本運用時は Starter プラン以上にして disk 設定を有効化してください。
+services:
+  - type: web
+    name: honne-board
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+    # 本運用時(有料プラン)は以下を有効化して data/ を永続化する
+    # disk:
+    #   name: honne-data
+    #   mountPath: /app/data
+    #   sizeGB: 1
