@@ -1,0 +1,2 @@
+# Google AdSense 承認後に、以下の形式で自分のサイト運営者IDに置き換えてください。
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
