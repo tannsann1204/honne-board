@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen antialiased">
         <header className="sticky top-0 z-10 border-b border-edge bg-base/80 backdrop-blur">
-          <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
+          <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
             <Link href="/" className="flex items-baseline gap-2">
               <span className="bg-gradient-to-r from-pink-400 via-amber-300 to-sky-400 bg-clip-text text-2xl font-bold tracking-wide text-transparent">
                 ほんね
@@ -54,10 +54,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
 
-        <main className="mx-auto max-w-3xl px-4 py-6">{children}</main>
+        <main className="mx-auto max-w-4xl px-4 py-6">{children}</main>
 
         <footer className="mt-12 border-t border-edge bg-card/60">
-          <div className="mx-auto max-w-3xl space-y-3 px-4 py-8 text-sm text-mute">
+          <div className="mx-auto max-w-4xl space-y-3 px-4 py-8 text-sm text-mute">
             <p className="bg-gradient-to-r from-pink-400 to-amber-300 bg-clip-text font-semibold text-transparent">
               ほんね
             </p>

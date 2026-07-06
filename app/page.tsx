@@ -91,7 +91,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           まだ投稿がありません。最初の本音を書いてみませんか?
         </p>
       ) : (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {posts.map((post, i) => (
             <Fragment key={post.id}>
               <PostCard post={post} />
@@ -100,6 +100,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
                   slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_INFEED}
                   format="fluid"
                   label="インフィード広告"
+                  className="sm:col-span-2"
                 />
               )}
             </Fragment>
