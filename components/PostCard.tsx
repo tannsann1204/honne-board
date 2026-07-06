@@ -21,26 +21,46 @@ export default function PostCard({ post, clamp = true }: { post: Post; clamp?: b
         <span>・</span>
         <time>{timeAgo(post.created_at)}</time>
       </div>
-      <Link href={`/post/${post.id}`} className="block">
-        <p
-          className={`whitespace-pre-wrap text-[15px] leading-relaxed text-ink ${
-            clamp ? "line-clamp-4" : ""
-          }`}
+
+      {post.image ? (
+        /* 写真つき投稿: 画像を敷いて本文をその上に重ねる。
+           本文は通常フローに置き、画像を背面いっぱいに広げることで
+           長文でも文字が画像からはみ出さない */
+        <Link
+          href={`/post/${post.id}`}
+          className="relative flex min-h-72 flex-col justify-end overflow-hidden rounded-xl border border-edge"
         >
-          {post.body}
-        </p>
-        {post.image && (
-          // eslint-disable-next-line @next/next/no-img-element
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`/uploads/${post.image}`}
             alt=""
             loading="lazy"
-            className={`mt-3 w-full rounded-xl border border-edge ${
-              clamp ? "max-h-80 object-cover" : "object-contain"
-            }`}
+            className="absolute inset-0 h-full w-full object-cover"
           />
-        )}
-      </Link>
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10"
+            aria-hidden="true"
+          />
+          <p
+            className={`relative p-4 text-[15px] font-medium leading-relaxed text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] whitespace-pre-wrap ${
+              clamp ? "line-clamp-4" : ""
+            }`}
+          >
+            {post.body}
+          </p>
+        </Link>
+      ) : (
+        <Link href={`/post/${post.id}`} className="block">
+          <p
+            className={`whitespace-pre-wrap text-[15px] leading-relaxed text-ink ${
+              clamp ? "line-clamp-4" : ""
+            }`}
+          >
+            {post.body}
+          </p>
+        </Link>
+      )}
+
       <div className="mt-3 flex items-center gap-3">
         <EmpathyButton postId={post.id} initialCount={post.empathy_count} />
         <Link
