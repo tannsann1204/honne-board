@@ -55,10 +55,10 @@ export default function EmpathyButton({
       onClick={handleClick}
       disabled={empathized}
       aria-label="共感する"
-      className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold transition ${
+      className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold transition ${
         empathized
-          ? "border-accent bg-accent-soft text-accent"
-          : "border-stone-200 bg-white text-stone-500 hover:border-accent hover:text-accent"
+          ? "bg-pink-500/20 text-pink-300 ring-1 ring-inset ring-pink-400/60"
+          : "bg-base text-mute ring-1 ring-inset ring-edge hover:text-pink-300 hover:ring-pink-400/50"
       }`}
     >
       <span>🫂</span>

@@ -48,7 +48,7 @@ export default function CommentForm({ postId }: { postId: number }) {
         rows={2}
         required
         placeholder="そっと寄り添うコメントをどうぞ(匿名)"
-        className="w-full resize-y rounded-xl border border-stone-200 bg-white p-3 text-sm outline-none focus:border-accent"
+        className="w-full resize-y rounded-xl border border-edge bg-card p-3 text-sm text-ink placeholder:text-mute/60 outline-none focus:border-accent"
       />
       <div className="flex items-center gap-2">
         <input
@@ -56,20 +56,20 @@ export default function CommentForm({ postId }: { postId: number }) {
           onChange={(e) => setNickname(e.target.value)}
           maxLength={NICKNAME_MAX}
           placeholder="ニックネーム(省略可)"
-          className="w-44 rounded-lg border border-stone-200 bg-white px-2 py-1.5 text-sm"
+          className="w-44 rounded-lg border border-edge bg-card px-2 py-1.5 text-sm text-ink placeholder:text-mute/60"
         />
-        <span className="ml-auto text-xs text-stone-400">
+        <span className="ml-auto text-xs text-mute">
           {body.length}/{BODY_MAX}
         </span>
         <button
           type="submit"
           disabled={submitting || body.trim().length === 0}
-          className="rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-40"
+          className="rounded-full bg-gradient-to-r from-sky-500 to-violet-500 px-4 py-1.5 text-sm font-semibold text-white shadow-lg shadow-sky-500/25 hover:opacity-90 disabled:opacity-40"
         >
           {submitting ? "送信中…" : "コメントする"}
         </button>
       </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-rose-400">{error}</p>}
     </form>
   );
 }

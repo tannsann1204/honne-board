@@ -36,7 +36,7 @@ export default async function PostPage({ params }: { params: Params }) {
 
   return (
     <div className="space-y-6">
-      <Link href="/" className="text-sm text-stone-400 hover:text-accent">
+      <Link href="/" className="text-sm text-mute hover:text-pink-300">
         ← 一覧へ戻る
       </Link>
 
@@ -50,9 +50,9 @@ export default async function PostPage({ params }: { params: Params }) {
       <AdSlot slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE} label="記事下広告" />
 
       <section className="space-y-4">
-        <h2 className="text-sm font-bold text-stone-600">コメント({comments.length})</h2>
+        <h2 className="text-sm font-bold text-ink/80">コメント({comments.length})</h2>
         {comments.length === 0 ? (
-          <p className="text-sm text-stone-400">
+          <p className="text-sm text-mute">
             まだコメントはありません。最初のひとことを寄せてみませんか?
           </p>
         ) : (
@@ -60,17 +60,17 @@ export default async function PostPage({ params }: { params: Params }) {
             {comments.map((comment) => (
               <li
                 key={comment.id}
-                className="rounded-xl border border-stone-200 bg-white p-3 text-sm"
+                className="rounded-xl border border-edge bg-card p-3 text-sm shadow shadow-black/20"
               >
-                <div className="mb-1 flex items-center gap-2 text-xs text-stone-400">
-                  <span className="font-medium text-stone-500">{comment.nickname}</span>
+                <div className="mb-1 flex items-center gap-2 text-xs text-mute">
+                  <span className="font-medium text-ink/70">{comment.nickname}</span>
                   <span>・</span>
                   <time>{timeAgo(comment.created_at)}</time>
                   <span className="ml-auto">
                     <ReportButton targetType="comment" targetId={comment.id} />
                   </span>
                 </div>
-                <p className="whitespace-pre-wrap leading-relaxed">{comment.body}</p>
+                <p className="whitespace-pre-wrap leading-relaxed text-ink">{comment.body}</p>
               </li>
             ))}
           </ul>

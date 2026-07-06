@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <article className="prose-sm max-w-none space-y-4 rounded-2xl border border-stone-200 bg-white p-6">
+    <article className="prose-sm max-w-none space-y-4 rounded-2xl border border-edge bg-card p-6">
       <h1 className="text-xl font-bold">利用規約</h1>
       <p className="text-sm leading-relaxed">
         本規約は、匿名掲示板「ほんね」(以下「本サービス」)の利用条件を定めるものです。利用者は本サービスを利用することで、本規約に同意したものとみなします。

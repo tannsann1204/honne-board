@@ -32,7 +32,7 @@ export default function ReportButton({
       type="button"
       onClick={handleClick}
       disabled={reported}
-      className="text-xs text-stone-400 hover:text-red-500 disabled:text-stone-300"
+      className="text-xs text-mute/70 hover:text-rose-400 disabled:text-mute/40"
     >
       {reported ? "通報済み" : "通報する"}
     </button>

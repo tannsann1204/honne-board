@@ -43,7 +43,9 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         <Link
           href={buildQuery({ sort })}
           className={`rounded-full px-3 py-1 font-semibold ${
-            !category ? "bg-accent text-white" : "bg-white text-stone-500 border border-stone-200"
+            !category
+              ? "bg-gradient-to-r from-pink-500 to-amber-400 text-white shadow-lg shadow-pink-500/25"
+              : "bg-card text-mute ring-1 ring-inset ring-edge hover:text-ink"
           }`}
         >
           すべて
@@ -53,10 +55,8 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
             key={c.slug}
             href={buildQuery({ category: c.slug, sort })}
             className={`rounded-full px-3 py-1 font-semibold ${
-              category === c.slug
-                ? "bg-accent text-white"
-                : "bg-white text-stone-500 border border-stone-200"
-            }`}
+              category === c.slug ? c.active : c.chip
+            } hover:opacity-80`}
           >
             {c.emoji} {c.label}
           </Link>
@@ -64,7 +64,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
       </nav>
 
       {/* 並び替えタブ */}
-      <div className="flex gap-4 border-b border-stone-200 text-sm font-semibold">
+      <div className="flex gap-4 border-b border-edge text-sm font-semibold">
         {(
           [
             { key: "new", label: "新着" },
@@ -76,8 +76,8 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
             href={buildQuery({ category, sort: tab.key })}
             className={`-mb-px border-b-2 px-1 pb-2 ${
               sort === tab.key
-                ? "border-accent text-accent"
-                : "border-transparent text-stone-400 hover:text-stone-600"
+                ? "border-pink-400 text-pink-300"
+                : "border-transparent text-mute hover:text-ink"
             }`}
           >
             {tab.label}
@@ -87,7 +87,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
 
       {/* 投稿フィード(N件ごとにインフィード広告) */}
       {posts.length === 0 ? (
-        <p className="py-12 text-center text-sm text-stone-400">
+        <p className="py-12 text-center text-sm text-mute">
           まだ投稿がありません。最初の本音を書いてみませんか?
         </p>
       ) : (
@@ -113,18 +113,18 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           {page > 1 && (
             <Link
               href={buildQuery({ category, sort, page: page - 1 })}
-              className="rounded-full border border-stone-200 bg-white px-4 py-1.5 font-semibold text-stone-600 hover:border-accent"
+              className="rounded-full bg-card px-4 py-1.5 font-semibold text-mute ring-1 ring-inset ring-edge hover:text-ink hover:ring-pink-400/50"
             >
               ← 前へ
             </Link>
           )}
-          <span className="text-stone-400">
+          <span className="text-mute">
             {page} / {totalPages}
           </span>
           {page < totalPages && (
             <Link
               href={buildQuery({ category, sort, page: page + 1 })}
-              className="rounded-full border border-stone-200 bg-white px-4 py-1.5 font-semibold text-stone-600 hover:border-accent"
+              className="rounded-full bg-card px-4 py-1.5 font-semibold text-mute ring-1 ring-inset ring-edge hover:text-ink hover:ring-pink-400/50"
             >
               次へ →
             </Link>

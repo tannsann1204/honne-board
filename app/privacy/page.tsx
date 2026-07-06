@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <article className="prose-sm max-w-none space-y-4 rounded-2xl border border-stone-200 bg-white p-6">
+    <article className="prose-sm max-w-none space-y-4 rounded-2xl border border-edge bg-card p-6">
       <h1 className="text-xl font-bold">プライバシーポリシー</h1>
       <p className="text-sm leading-relaxed">
         匿名掲示板「ほんね」(以下「本サービス」)は、利用者のプライバシーを尊重し、個人情報の取り扱いについて以下のとおり定めます。

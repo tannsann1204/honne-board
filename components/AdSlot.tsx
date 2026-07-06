@@ -36,7 +36,7 @@ export default function AdSlot({ slot, format = "auto", className = "", label = 
     // 広告未設定の間は配置が分かるプレースホルダーを出す
     return (
       <div
-        className={`flex h-24 items-center justify-center rounded-xl border border-dashed border-stone-300 bg-stone-50 text-xs text-stone-400 ${className}`}
+        className={`flex h-24 items-center justify-center rounded-xl border border-dashed border-edge bg-card/50 text-xs text-mute/70 ${className}`}
         aria-hidden="true"
       >
         {label}スペース(AdSense 設定後に表示)

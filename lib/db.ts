@@ -7,6 +7,7 @@ export type Post = {
   body: string;
   nickname: string;
   category: string;
+  image: string | null;
   empathy_count: number;
   comment_count: number;
   created_at: string;
@@ -56,6 +57,11 @@ function createDb(): Database.Database {
     CREATE INDEX IF NOT EXISTS idx_posts_category ON posts(category, created_at);
     CREATE INDEX IF NOT EXISTS idx_comments_post ON comments(post_id);
   `);
+  // 既存DBへの簡易マイグレーション: 画像カラムを後付けする
+  const cols = db.prepare("PRAGMA table_info(posts)").all() as { name: string }[];
+  if (!cols.some((c) => c.name === "image")) {
+    db.exec("ALTER TABLE posts ADD COLUMN image TEXT");
+  }
   return db;
 }
 
@@ -100,10 +106,15 @@ export function getPost(id: number): Post | undefined {
     .get(id) as Post | undefined;
 }
 
-export function createPost(input: { body: string; nickname: string; category: string }): number {
+export function createPost(input: {
+  body: string;
+  nickname: string;
+  category: string;
+  image?: string | null;
+}): number {
   const res = getDb()
-    .prepare("INSERT INTO posts (body, nickname, category) VALUES (?, ?, ?)")
-    .run(input.body, input.nickname, input.category);
+    .prepare("INSERT INTO posts (body, nickname, category, image) VALUES (?, ?, ?, ?)")
+    .run(input.body, input.nickname, input.category, input.image ?? null);
   return Number(res.lastInsertRowid);
 }
 
